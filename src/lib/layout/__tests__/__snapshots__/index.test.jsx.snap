@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StepperForm renders correctly 1`] = `
+<h2
+  class="chakra-heading css-0"
+  data-testid="heading"
+>
+  CALCULATE YOUR FOOTPRINT
+</h2>
+`;

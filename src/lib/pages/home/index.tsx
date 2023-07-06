@@ -1,11 +1,13 @@
 import { Flex } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
+import { Button } from '@chakra-ui/react'
 
 import CTASection from '~/lib/components/samples/CTASection';
 import SomeImage from '~/lib/components/samples/SomeImage';
-import SomeText from '~/lib/components/samples/SomeText';
+import StepperForm from '~/lib/layout/StepperForm'
 
 const Home = () => {
+
   return (
     <Flex
       direction="column"
@@ -17,9 +19,7 @@ const Home = () => {
       w="full"
     >
       <NextSeo title="Home" />
-      <SomeText />
-      <SomeImage />
-      <CTASection />
+      <StepperForm />
     </Flex>
   );
 };
