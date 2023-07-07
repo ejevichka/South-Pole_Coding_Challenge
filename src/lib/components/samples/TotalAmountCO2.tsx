@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link';
-import { useState } from 'react'
 import { Heading, Button } from '@chakra-ui/react'
 import CountingNumber from '~/lib/components/samples/CountingNumber'
 
