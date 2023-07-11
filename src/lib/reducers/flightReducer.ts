@@ -17,7 +17,7 @@ type FlightAction =
   | { type: 'ADD_FLIGHT'; payload: Flight }
   | { type: 'REMOVE_FLIGHT'; id: string };
 
-const flightReducer = (state: Flight[], action: FlightAction): Flight[] => {
+const flightReducer = (state: Flight[], action: FlightAction): any => {
   switch (action.type) {
     case 'ADD_FLIGHT':
       console.log("action.flight", action.payload)

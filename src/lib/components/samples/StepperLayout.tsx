@@ -1,6 +1,6 @@
 import React, { useState, useRef, ChangeEvent, FormEvent, useContext } from 'react';
-import { TextField, Button, Autocomplete, Checkbox, Label } from '@mui/material';
-import { FlightsDispatchContext } from '~/lib/contexts/flightDispatchContext';
+import { TextField, Button, Autocomplete, Checkbox } from '@mui/material';
+import  FlightsDispatchContextWrapper from '~/lib/contexts/flightDispatchContext';
 
 interface Airport {
   value: string;
@@ -34,7 +34,7 @@ const FlightForm: React.FC = () => {
     passengers: '',
     roundTrip: true
   });
-
+  const FlightsDispatchContext = FlightsDispatchContextWrapper()
   const dispatch = useContext(FlightsDispatchContext);
   const toRef = useRef<HTMLInputElement | null>(null);
   const passengersRef = useRef<HTMLInputElement | null>(null);
@@ -50,8 +50,8 @@ const FlightForm: React.FC = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Perform form submission logic with the updated formState
-    console.log("formState", formState)
-    dispatch({ type: 'ADD_FLIGHT', payload: formState });
+   
+    (dispatch as any)({ type: 'ADD_FLIGHT', payload: formState });
     setFormState({
       from: null,
       to: null,
@@ -112,7 +112,7 @@ const FlightForm: React.FC = () => {
         onChange={handleChange}
         inputRef={passengersRef}
       />
-      <Label>Round Trip </Label>
+      <div>Round Trip </div>
      <Checkbox defaultChecked  value={formState.roundTrip}
         onChange={handleChange} />
       <Button type="submit" variant="contained" color="primary">

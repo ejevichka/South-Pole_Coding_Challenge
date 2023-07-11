@@ -2,12 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Button, Menu, MenuItem } from '@mui/material';
 import { ShoppingCart, Language } from '@mui/icons-material';
 
-interface HeaderProps {
-  onCartClick: () => void;
-  onLoginClick: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ onCartClick, onLoginClick }) => {
+const Header: React.FC = () => {
   const [languageAnchorEl, setLanguageAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleLanguageClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,11 +30,11 @@ const Header: React.FC<HeaderProps> = ({ onCartClick, onLoginClick }) => {
 
         <Button color="inherit">Explore Projects</Button>
 
-        <IconButton color="inherit" onClick={onCartClick}>
+        <IconButton color="inherit">
           <ShoppingCart />
         </IconButton>
 
-        <Button color="inherit" onClick={onLoginClick}>
+        <Button color="inherit" >
           Log in
         </Button>
 

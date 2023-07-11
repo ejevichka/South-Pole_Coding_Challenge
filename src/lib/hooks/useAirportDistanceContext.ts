@@ -1,6 +1,7 @@
 import { useContext } from 'react';
+import {AirportDistanceContext, AirportDistanceContextProps } from '~/lib/contexts/AirportDistavceProvider'
 // Custom hook to access the context values
-const useAirportDistanceContext = (): AirportDistanceContextProps => {
+export const useAirportDistanceContext = (): AirportDistanceContextProps => {
     const context = useContext(AirportDistanceContext);
   
     if (!context) {

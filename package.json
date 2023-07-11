@@ -15,7 +15,7 @@
     "type-check": "tsc --noEmit",
     "type-check:turbo": "npx turbo type-check",
     "test:e2e": "playwright test",
-    "test": "pnpm testheadless",
+    "test": "jest --runInBand",
     "testonly": "jest --runInBand",
     "format": "prettier --write src",
     "up-interactive": "pnpm up -i",
