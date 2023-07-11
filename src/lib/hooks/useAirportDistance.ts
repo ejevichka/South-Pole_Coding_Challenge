@@ -25,12 +25,12 @@ const useAirportDistance = (
 } => {
   const [data, setData] = useState<AirportDistance | null>(null);
   const [error, setError] = useState<AirportDistanceError | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (showResults) {
       const abortController = new AbortController();
-
+      setLoading(true)
       const fetchData = async (): Promise<void> => {
         try {
           //const urlWithParams = `${url}/${from}/${to}`;
@@ -38,7 +38,6 @@ const useAirportDistance = (
           const response = await fetch(dummy, {
             signal: abortController.signal,
           });
-          console.log('response', response)
 
           if (!response.ok) {
             throw new Error('Failed to fetch data');
@@ -46,6 +45,7 @@ const useAirportDistance = (
 
           const responseData: AirportDistance = await response.json();
           setData(responseData);
+          console.log('responseData!!!!!!!!!!!', responseData)
           setLoading(false);
         } catch (error: any) {
           if (!abortController.signal.aborted) {
@@ -63,6 +63,7 @@ const useAirportDistance = (
     }
   }, [showResults, from, to]);
 
+  //value is only recalculated when the data dependency changes
   const cachedData = useMemo(() => data, [data]);
 
   return { data: cachedData, loading, error };

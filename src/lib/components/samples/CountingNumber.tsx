@@ -15,13 +15,13 @@ const CountingNumber: React.FC<CountingNumberProps> = ({ to }) => {
 
   useEffect(() => {
     if (to < 0) {
-      console.warn('The "to" prop should be a positive number');
+      throw new Error('The "to" prop should be a positive number');
     }
   }, [to]);
 
   return (
     <div>
-      <animated.span>{number.to((val:number) => Math.floor(val))}</animated.span>
+      <animated.span data-testid="animated">{number.to((val:number) => Math.floor(val))}</animated.span>
     </div>
   );
 };

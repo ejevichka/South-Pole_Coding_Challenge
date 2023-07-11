@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 const EMISSIONS_PER_PASSENGER_KM = 285; // grams
 
@@ -7,7 +7,8 @@ const useEmissionsCalculator = (
     passengers: number
 ): number => {
     const [emissions, setEmissions] = useState<number>(0);
-    const distance = !!data ? data?.distance : 0
+    //distance value is only recalculated when the data dependency changes
+    const distance = useMemo(() => !!data ? data.distance : 0, [data]);
 
     useEffect(() => {
         if (data && passengers) {

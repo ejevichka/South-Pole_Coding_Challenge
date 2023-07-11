@@ -11,6 +11,7 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   collectCoverage: true,
   testPathIgnorePatterns: ['/e2e/.*\\.spec\\.ts$'],
+  automock: false
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

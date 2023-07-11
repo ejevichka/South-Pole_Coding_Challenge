@@ -14,7 +14,9 @@ function TotalAmountCO2({ CO2data }: any) {
       
       <div>Your CO2 footprint</div>
       <Link href="https://market.southpole.com/home/offset-emissions" passHref={true}>
-        <Button>Compensate</Button>
+        <Button
+         colorScheme={"southpole.button"}
+        >Compensate</Button>
       </Link>
     </>
   );

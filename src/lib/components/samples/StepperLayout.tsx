@@ -1,119 +1,125 @@
-import { useRef, useEffect } from 'react';
-import { Button, Box, Input, Checkbox } from '@chakra-ui/react';
-import { Controller, Control } from 'react-hook-form';
-import Select from 'react-select'
+import React, { useState, useRef, ChangeEvent, FormEvent, useContext } from 'react';
+import { TextField, Button, Autocomplete, Checkbox, Label } from '@mui/material';
+import { FlightsDispatchContext } from '~/lib/contexts/flightDispatchContext';
 
-interface StepperLayoutProps {
-    control: Control;
-    handleClick: () => void;
-    setValue: (name: string, value: any) => void;
-}
 interface Airport {
-    value: string;
-    label: string;
+  value: string;
+  label: string;
+}
+
+interface FormState {
+  from: Airport | null;
+  to: Airport | null;
+  passengers: string;
+  roundTrip: boolean
 }
 
 const airports: Airport[] = [
-    { value: 'DOH', label: 'Hamad International Airport(DOH)' },
-    { value: 'HND', label: 'Haneda Airport(HND)' },
-    { value: 'SIN', label: 'Singapore Changi Airport(SIN)' },
-    { value: 'ICN', label: 'Incheon International Airport(ICN)' },
-    { value: 'NRT', label: 'Narita International Airport(NRT)' },
-    { value: 'MUC', label: 'Munich Airport(MUC)' },
-    { value: 'ZRH', label: 'Zurich Airport(ZRH)' },
-    { value: 'LHR', label: 'Heathrow Airport(LHR)' },
-    { value: 'KIX', label: 'Kansai International Airport(KIX)' },
-    { value: 'HX', label: 'Hong Kong International Airport(HX)' },
+  { value: 'DOH', label: 'Hamad International Airport (DOH)' },
+  { value: 'HND', label: 'Haneda Airport (HND)' },
+  { value: 'SIN', label: 'Singapore Changi Airport (SIN)' },
+  { value: 'ICN', label: 'Incheon International Airport (ICN)' },
+  { value: 'NRT', label: 'Narita International Airport (NRT)' },
+  { value: 'MUC', label: 'Munich Airport (MUC)' },
+  { value: 'ZRH', label: 'Zurich Airport (ZRH)' },
+  { value: 'LHR', label: 'Heathrow Airport (LHR)' },
+  { value: 'KIX', label: 'Kansai International Airport (KIX)' },
+  { value: 'HX', label: 'Hong Kong International Airport (HX)' },
 ];
 
+const FlightForm: React.FC = () => {
+  const [formState, setFormState] = useState<FormState>({
+    from: null,
+    to: null,
+    passengers: '',
+    roundTrip: true
+  });
 
-const StepperLayout: React.FC<StepperLayoutProps> = ({ control, handleClick, setValue }) => {
+  const dispatch = useContext(FlightsDispatchContext);
+  const toRef = useRef<HTMLInputElement | null>(null);
+  const passengersRef = useRef<HTMLInputElement | null>(null);
 
-    const firstInputRef = useRef<Select | null>(null);
-    const secondInputRef = useRef<Select | null>(null);
-    const thirdInputRef = useRef<HTMLInputElement | null>(null);
-    useEffect(() => {
-        if (firstInputRef.current) {
-            //firstInputRef.current.focus();
-        }
-    }, []);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Perform form submission logic with the updated formState
+    console.log("formState", formState)
+    dispatch({ type: 'ADD_FLIGHT', payload: formState });
+    setFormState({
+      from: null,
+      to: null,
+      passengers: '',
+      roundTrip: true
+    });
 
-    const handleSetValueAndFocus = (ref: React.RefObject<Select | HTMLInputElement>, field: string, value: any) => {
-        setValue(field, value);
-        if (ref.current) {
-            //ref.current.focus();
-        }
-    };
+    // Set focus on the next input field after submitting the form
+    if (toRef.current) {
+      toRef.current.focus();
+    }
+  };
 
-    return (
-        <Box gap="0">
-            <Controller
-                name={'searchSelect1'}
-                control={control}
-                defaultValue={{ value: '', label: 'From*' }}
-                render={({ field }) => (
-                    <Select
-                        options={airports}
-                        {...field}
-                        ref={(e) => {
-                            field.ref(e);
-                            //firstInputRef.current = e;
-                        }}
-                        onChange={(selectedOption) => {
-                            field.onChange(selectedOption);
-                            handleSetValueAndFocus(secondInputRef, field.name, selectedOption);
-                        }}
-                    />
-                )}
-            />
-            <Controller
-                name={'searchSelect2'}
-                control={control}
-                defaultValue={{ value: '', label: 'To*' }}
-                render={({ field }) => (
-                    <Select
-                        options={airports}
-                        {...field}
-                        ref={(e) => {
-                            field.ref(e);
-                            //secondInputRef.current = e;
-                        }}
-                        onChange={(selectedOption) => {
-                            field.onChange(selectedOption);
-                            handleSetValueAndFocus(thirdInputRef, field.name, selectedOption);
-                        }}
-                    />
-                )}
-            />
+  return (
+    <form onSubmit={handleSubmit}>
+      <Autocomplete
+        options={airports}
+        getOptionLabel={(option) => option.label}
+        value={formState.from}
+        onChange={(event, newValue) => {
+          if (newValue) {
+            setFormState((prevState) => ({
+              ...prevState,
+              from: newValue,
+            }));
+          }
+        }}
+        renderInput={(params) => <TextField {...params} label="From" variant="outlined" />}
+      />
 
-            <Controller
-                name="roundTrip"
-                control={control}
-                defaultValue="true"
-                render={({ field }) => <Checkbox  {...field} colorScheme='green' defaultChecked>
-                    RoundTrip
-                </Checkbox>}
-            />
+      <Autocomplete
+        options={airports}
+        getOptionLabel={(option) => option.label}
+        value={formState.to}
+        onChange={(event, newValue) => {
+          if (newValue) {
+            setFormState((prevState) => ({
+              ...prevState,
+              to: newValue,
+            }));
+          }
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="To"
+            variant="outlined"
+            inputRef={toRef}
+          />
+        )}
+      />
 
-            <Controller
-                name="numOfTravellers"
-                control={control}
-                defaultValue="1"
-                render={({ field }) => <Input
-                    {...field}
-                    placeholder="1"
-                    ref={(e) => {
-                        field.ref(e);
-                        thirdInputRef.current = e;
-                    }}
-                />
-                }
-            />
-
-            <Button onClick={handleClick}>Submit</Button>
-        </Box>
-    );
+      <TextField
+        label="Number of passengers"
+        variant="outlined"
+        name="passengers"
+        value={formState.passengers}
+        onChange={handleChange}
+        inputRef={passengersRef}
+      />
+      <Label>Round Trip </Label>
+     <Checkbox defaultChecked  value={formState.roundTrip}
+        onChange={handleChange} />
+      <Button type="submit" variant="contained" color="primary">
+        Submit
+      </Button>
+    </form>
+  );
 };
 
-export default StepperLayout;
+export default FlightForm;
