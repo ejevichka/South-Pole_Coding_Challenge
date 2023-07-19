@@ -50,3 +50,6 @@ sitemap*.xml
 
 # VS Code
 .vscode/settings.json
+/test-results/
+/playwright-report/
+/playwright/.cache/
