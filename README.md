@@ -20,6 +20,10 @@ For larger projects, I would consider using Redux middleware to perform asynchro
 
 By combining the reducer pattern with context API, the application's state management is organized, efficient, and easy to reason about. As the project grows, this scalable approach will allow for the addition of more complex state management solutions if required. In summary, I adopted a balanced approach to state management, choosing the right tools for the specific requirements of the project, while remaining open to future enhancements and optimizations.
 
+I've used the theme from Material UI to style general components and provide consistent visual styling throughout the application, like set default colors, fonts, spacing, and other visual attributes. By doing so, I ensure a cohesive look and feel across the entire application, creating a seamless user experience.
+
+On the other hand, for more specific use cases and custom components, I implemented styled components from Material UI. Styled components provide a higher level of customization, enabling me to define unique styles that are tailored to specific components or sections of the application.
+
 So, let's run this
 
 - 🚀 **Next.js 13** - **React 18**
