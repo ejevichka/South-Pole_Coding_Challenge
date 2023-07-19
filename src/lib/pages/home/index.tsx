@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
-import StepperForm from '~/lib/layout/StepperForm'
+import  CalculatePageLayout  from '~/lib/layout/CalculatePageLayout'
 
 const Home = () => {
 
@@ -15,7 +15,7 @@ const Home = () => {
       w="full"
     >
       <NextSeo title="Home" />
-      <StepperForm />
+      <CalculatePageLayout />
     </Flex>
   );
 };

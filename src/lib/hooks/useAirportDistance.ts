@@ -1,41 +1,30 @@
 import { useEffect, useState, useMemo } from 'react';
+import { Airport } from '~/lib/layout/FormLayout.types'
+import { IAirportDistance, AirportDistanceError } from '~/lib/hooks/types/useAirportDistance.types'
 
-interface AirportDistance {
-  // Define the structure of the data object
-  // based on the response from the API
-  // Adjust the types according to the actual response structure
-  // This is just a placeholder example
-  distance: number;
-  duration: number;
-}
-
-interface AirportDistanceError {
-  message: string;
-}
 
 const useAirportDistance = (
-  url: string,
-  from: string,
-  to: string,
+  from: Airport | null,
+  to: Airport | null,
   showResults: boolean
 ): {
-  data: any | null;
+  data: IAirportDistance | null;
   loading: boolean;
   error: AirportDistanceError | null;
 } => {
-  const [data, setData] = useState<AirportDistance | null>(null);
+  const [data, setData] = useState<IAirportDistance | null>(null);
   const [error, setError] = useState<AirportDistanceError | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (showResults) {
+    if (showResults && from!== null && to!==null) {
       const abortController = new AbortController();
       setLoading(true)
       const fetchData = async (): Promise<void> => {
         try {
-          //const urlWithParams = `${url}/${from}/${to}`;
-          const dummy = 'http://localhost:3000/api/sitaopen.api'
-          const response = await fetch(dummy, {
+          //performed local api endpoint to request data
+          const dummyUrl = `http://localhost:3000/api/sitaopen.api?from=${from.value}&to=${to.value}`
+          const response = await fetch(dummyUrl, {
             signal: abortController.signal,
           });
 
@@ -43,13 +32,12 @@ const useAirportDistance = (
             throw new Error('Failed to fetch data');
           }
 
-          const responseData: AirportDistance = await response.json();
+          const responseData: IAirportDistance = await response.json();
           setData(responseData);
-          console.log('responseData!!!!!!!!!!!', responseData)
           setLoading(false);
-        } catch (error: any) {
+        } catch (error: unknown) {
           if (!abortController.signal.aborted) {
-            setError({ message: error.message as string });
+            setError({ message: (error as AirportDistanceError).message });
             setLoading(false);
           }
         }

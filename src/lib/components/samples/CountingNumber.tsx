@@ -10,7 +10,7 @@ const CountingNumber: React.FC<CountingNumberProps> = ({ to }) => {
     number: to,
     from: { number: 0 },
     delay: 200,
-    config: { duration: 800 },
+    config: { duration: 500 },
   });
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const CountingNumber: React.FC<CountingNumberProps> = ({ to }) => {
 
   return (
     <div>
-      <animated.span data-testid="animated">{number.to((val:number) => Math.floor(val))}</animated.span>
+      <animated.span data-testid="animated">{number.to((val:number) => (Number(val.toFixed(2))))}</animated.span> tonnes
     </div>
   );
 };

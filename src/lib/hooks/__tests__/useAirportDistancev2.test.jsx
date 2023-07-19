@@ -17,13 +17,12 @@ describe("useAirportDistance", () => {
   });
 
   it("should return data after fetch", async () => {
-    const stubbedFetchUrl = "api/countriesUrl-mocked";
     const stubbedCountries = '1';
 
     fetchMock.mockResponseOnce(JSON.stringify(stubbedCountries));
 
     const { result } = renderHook(() =>
-      useAirportDistance(stubbedFetchUrl, '', '', true)
+      useAirportDistance('', '', true)
     );
 
     // Advance timers by 1 second

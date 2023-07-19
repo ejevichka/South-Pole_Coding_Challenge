@@ -1,15 +1,12 @@
-import { Flex, Link, Text } from '@chakra-ui/react';
+import { Box, Typography } from "@mui/material"
 
 const Footer = () => {
   return (
-    <Flex as="footer" width="full" justifyContent="center">
-      <Text fontSize="sm">
-        {new Date().getFullYear()} -{' '}
-        <Link href="https://sznm.dev" isExternal rel="noopener noreferrer">
-          sznm.dev
-        </Link>
-      </Text>
-    </Flex>
+    <Box>
+      <Typography data-testid="heading_h6" variant="h6" component="h6" align={'center'}>
+        {new Date().getFullYear()} - {'South Pole'} 
+      </Typography>
+    </Box>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import {AirportDistanceContext, AirportDistanceContextProps } from '~/lib/contexts/AirportDistavceProvider'
+import {AirportDistanceContext } from '~/lib/contexts/AirportDistanceProvider'
+import {AirportDistanceContextProps} from '~/lib/contexts/types'
 // Custom hook to access the context values
 export const useAirportDistanceContext = (): AirportDistanceContextProps => {
     const context = useContext(AirportDistanceContext);
@@ -9,4 +10,4 @@ export const useAirportDistanceContext = (): AirportDistanceContextProps => {
     }
   
     return context;
-  };
+};

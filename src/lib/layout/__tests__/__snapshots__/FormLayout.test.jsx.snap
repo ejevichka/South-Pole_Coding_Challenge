@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormLayout renders correctly 1`] = `
+<h1
+  class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
+  data-testid="heading_h1"
+>
+  CALCULATE YOUR FOOTPRINT
+</h1>
+`;

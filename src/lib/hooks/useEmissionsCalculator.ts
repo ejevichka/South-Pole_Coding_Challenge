@@ -1,28 +1,27 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
+import { IAirportDistance } from '~/lib/hooks/types/useAirportDistance.types'
 
 const EMISSIONS_PER_PASSENGER_KM = 285; // grams
 
 const useEmissionsCalculator = (
-    data: any,
-    passengers: number
+  data: IAirportDistance | null,
+  passengers: number
 ): number => {
-    const [emissions, setEmissions] = useState<number>(0);
-    //distance value is only recalculated when the data dependency changes
-    const distance = useMemo(() => !!data ? data.distance : 0, [data]);
+  const [emissions, setEmissions] = useState<number>(0);
 
-    useEffect(() => {
-        if (data && passengers) {
-            const calculateEmissions = (): void => {
-                const totalEmissions: number =
-                    (EMISSIONS_PER_PASSENGER_KM * distance * passengers) / 1000; // Convert grams to kilograms
-                setEmissions(totalEmissions);
-            };
-
-        calculateEmissions();
+  useEffect(() => {
+    const calculateEmissions = (): void => {
+    if (data!==null) {
+      const totalEmissions: number =
+        (EMISSIONS_PER_PASSENGER_KM * data.distance * passengers) / 1000000; // Convert grams to metric tonnes
+      setEmissions(totalEmissions);
     }
+    };
+
+    calculateEmissions();
   }, [data, passengers]);
 
-return emissions;
+  return emissions;
 };
 
 export default useEmissionsCalculator;
