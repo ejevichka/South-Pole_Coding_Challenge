@@ -8,7 +8,7 @@ import { StyledButton } from '~/lib/components/styled-components/StyledButton'
 import { ReducerContext } from '~/lib/contexts/AirportDistanceProvider';
 import AutocompleteWithServerOptions from '~/lib/components/AutocompleteDebounce';
 import useAirportDistance from '~/lib/hooks/useAirportDistance';
-import { FormState } from '~/lib/layout/FormLayout.types';
+import { FormState } from '~/lib/layout/types/FormLayout.types';
 import useEmissionsCalculator from '~/lib/hooks/useEmissionsCalculator'
 
 const FlightForm: React.FC = () => {
