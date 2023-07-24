@@ -2,7 +2,7 @@ import React, { useState, SyntheticEvent } from 'react'
 import { CircularProgress } from '@mui/material'
 import { StyledTextField } from '~/lib/components/styled-components/StyledTextField'
 import { StyledAutocomplete } from '~/lib/components/styled-components/StyledAutocomlete'
-import { FormState } from '~/lib/layout/FormLayout.types'
+import { FormState } from '~/lib/layout/types/FormLayout.types'
 import { useFetchOptions } from '~/lib/hooks/useOptions'
 import { Option } from '~/lib/components/samples/types'
 
