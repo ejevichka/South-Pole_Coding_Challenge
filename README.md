@@ -6,7 +6,7 @@
 
 ## About project
 
-In this project, I decided not to use Redux for managing state for a few reasons:
+In this project, I decided not to use <a href="https://react-redux.js.org/">React-Redux</a> for managing state for a few reasons:
 
 Simplicity: The project's state management requirements are relatively straightforward, and we did not have an overwhelming need for a complex state management system like Redux. Instead, we utilized React's built-in useState and useReducer hooks to handle local state and application-level state.
 
@@ -49,9 +49,11 @@ So, let's run this
 I've chosen PNPM, because it uses a symlink-based approach, which can result in faster installations and updates compared to Yarn.
 ## Getting Started
 
-2. After cloning the project, run this command: `pnpm` or `pnpm install`
+1. After cloning the project, run this command: `pnpm` or `pnpm install`
 
-3. Then, run the development server:
+2. Following Executability requirements, run : `npm start`
+
+3. Development server:
 
 ```bash
 pnpm dev
@@ -65,10 +67,9 @@ pnpm test
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `src/lib/pages/index.tsx`. The page auto-updates as you edit the file.
-
 ## How to Run e2e Test (in local machine)
 1. run locally the test with `pnpm test:e2e`.
+
 or to test build version:
 1. Build production with `pnpm build`, then run the production build using `pnpm start`.
 2. Open another terminal (or new terminal tab, don't cancel / close the production server), then run the test with `pnpm test:e2e`.

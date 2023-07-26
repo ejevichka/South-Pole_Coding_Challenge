@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Airport } from '~/lib/layout/FormLayout.types'
+import { Airport } from '~/lib/layout/types/FormLayout.types'
 import { IAirportDistance, AirportDistanceError } from '~/lib/hooks/types/useAirportDistance.types'
 
 
