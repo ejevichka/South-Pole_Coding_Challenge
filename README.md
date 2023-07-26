@@ -49,17 +49,17 @@ So, let's run this
 I've chosen PNPM, because it uses a symlink-based approach, which can result in faster installations and updates compared to Yarn.
 ## Getting Started
 
-2. After cloning the project, run this command: `pnpm` or `pnpm install`
+1. After cloning the project, run this command: `pnpm` or `pnpm install`
 
-3. Following Executability requirements, run : `npm start`
+2. Following Executability requirements, run : `npm start`
 
-4. Development server:
+3. Development server:
 
 ```bash
 pnpm dev
 ```
 
-5. Running unit tests:
+4. Running unit tests:
 
 ```bash
 pnpm test
