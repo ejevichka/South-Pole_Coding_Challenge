@@ -51,13 +51,15 @@ I've chosen PNPM, because it uses a symlink-based approach, which can result in 
 
 2. After cloning the project, run this command: `pnpm` or `pnpm install`
 
-3. Then, run the development server:
+3. Following Executability requirements, run : `npm start`
+
+4. Development server:
 
 ```bash
 pnpm dev
 ```
 
-4. Running unit tests:
+5. Running unit tests:
 
 ```bash
 pnpm test
@@ -65,10 +67,9 @@ pnpm test
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `src/lib/pages/index.tsx`. The page auto-updates as you edit the file.
-
 ## How to Run e2e Test (in local machine)
 1. run locally the test with `pnpm test:e2e`.
+
 or to test build version:
 1. Build production with `pnpm build`, then run the production build using `pnpm start`.
 2. Open another terminal (or new terminal tab, don't cancel / close the production server), then run the test with `pnpm test:e2e`.
