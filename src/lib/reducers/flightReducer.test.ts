@@ -1,5 +1,5 @@
 import flightReducer, { initialState } from './flightReducer';
-import { Flight, FlightAction } from '~/lib/reducers/types';
+import { FlightAction } from '~/lib/reducers/types';
 
 describe('flightReducer', () => {
   it('should add a new flight when receiving ADD_FLIGHT action', () => {

@@ -1,14 +1,15 @@
 {
-  "name": "nextarter-chakra",
+  "name": "coding-challenge",
   "version": "0.1.0",
   "private": true,
   "author": "ejevichka",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run open-browser && next dev -p 3000",
     "build": "next build",
     "build:turbo": "npx turbo build",
+    "open-browser": "open http://localhost:3000 ",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "start": "next start",
+    "start": "npm run open-browser && next build && next start && npm test",
     "lint": "next lint",
     "lint:fix": "eslint src --fix && pnpm format",
     "lint:turbo": "npx turbo lint",

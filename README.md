@@ -6,7 +6,7 @@
 
 ## About project
 
-In this project, I decided not to use Redux for managing state for a few reasons:
+In this project, I decided not to use <a href="https://react-redux.js.org/">React-Redux</a> for managing state for a few reasons:
 
 Simplicity: The project's state management requirements are relatively straightforward, and we did not have an overwhelming need for a complex state management system like Redux. Instead, we utilized React's built-in useState and useReducer hooks to handle local state and application-level state.
 
